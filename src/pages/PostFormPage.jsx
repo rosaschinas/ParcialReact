@@ -65,12 +65,14 @@ const handleSubmit = async (e) => {
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           placeholder="Título"
+          required
         />
 
         <textarea
           value={formData.body}
           onChange={(e) => setFormData({ ...formData, body: e.target.value })}
           placeholder="Contenido"
+          required
         />
 
         <button type="submit">
