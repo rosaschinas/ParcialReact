@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { postsService } from '../services/posts.service';
+import { useTheme } from '../context/ThemeContext';
 
 function PostDetailPage() {
   const { id } = useParams();
+  const { theme } = useTheme();
 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,17 +27,18 @@ function PostDetailPage() {
   }, [id]);
 
   if (loading) return <p>Cargando post...</p>;
-
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className={`detail-container ${theme}`}>
       <h2>{post.title}</h2>
       <p>{post.body}</p>
 
-      <Link to="/">
-        <button>Volver al inicio</button>
-      </Link>
+      <div className="btn-group">
+        <Link to="/">
+          <button className="btn btn-secondary">Volver al inicio</button>
+        </Link>
+      </div>
     </div>
   );
 }
