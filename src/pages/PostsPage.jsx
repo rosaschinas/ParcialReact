@@ -16,14 +16,17 @@ function PostsPage() {
     <div>
       <h2>Listado de Posts</h2>
       <p>Cantidad de posts: {posts.length}</p>
-
-      {posts.map((post) => (
-        <PostCard
-          key={post.id}
-          post={post}
-          onDelete={eliminarPost}
-        />
-      ))}
+      
+      
+      <div className="posts-grid">
+        {posts.map((post) => (
+          <PostCard 
+            key={post.id} 
+            post={post} 
+            onDelete={eliminarPost} 
+          />
+        ))}
+      </div>
     </div>
   );
 }
