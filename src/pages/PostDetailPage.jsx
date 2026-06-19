@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { postsService } from '../services/posts.service';
 import { useTheme } from '../context/ThemeContext';
+import { usePosts } from '../context/PostsContext';
 
 function PostDetailPage() {
   const { id } = useParams();
   const { theme } = useTheme();
+  const { posts } = usePosts();
 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,14 +19,19 @@ function PostDetailPage() {
         const data = await postsService.getById(id);
         setPost(data);
       } catch (err) {
-        setError(err.message);
+        const postLocal = posts.find(p => p.id === Number(id));
+        if (postLocal) {
+          setPost(postLocal);
+        } else {
+          setError(err.message);
+        }
       } finally {
         setLoading(false);
       }
     };
 
     cargarPost();
-  }, [id]);
+  }, [id, posts]);
 
   if (loading) return <p>Cargando post...</p>;
   if (error) return <p>Error: {error}</p>;
