@@ -10,7 +10,7 @@ function PostFormPage() {
   const navigate = useNavigate();
   const esEdicion = !!id;
 
-  const { crearPost, editarPost } = usePosts();
+  const { crearPost, editarPost, posts } = usePosts();
 
   const [formData, setFormData] = useState({ title: '', body: '' });
   const [loading, setLoading] = useState(esEdicion);
@@ -31,20 +31,25 @@ function PostFormPage() {
           const data = await postsService.getById(id);
           setFormData({ title: data.title, body: data.body });
         } catch (err) {
-          setError(err.message);
+          const postLocal = posts.find(p => p.id === Number(id));
+          if (postLocal) {
+            setFormData({ title: postLocal.title, body: postLocal.body });
+          } else {
+            setError(err.message);
+          }
         } finally {
           setLoading(false);
         }
       };
       cargarPost();
     }
-  }, [id, esEdicion]);
+  }, [id, esEdicion, posts]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (esEdicion) {
-        await editarPost({ id, ...formData });
+        await editarPost({ id: Number(id), ...formData });
       } else {
         await crearPost(formData);
       }

@@ -49,7 +49,9 @@ export function PostsProvider({ children }) {
         postsPrevios.map(post => post.id === postModificado.id ? postModificado : post)
       );
     } catch (err) {
-      setError(err.message);
+      setPosts(postsPrevios =>
+        postsPrevios.map(post => post.id === postEditadoData.id ? postEditadoData : post)
+      );
     }
   };
 
@@ -62,7 +64,7 @@ export function PostsProvider({ children }) {
 
 export function usePosts() {
   const context = useContext(PostsContext);
-if (!context) {
+  if (!context) {
     throw new Error('usePosts debe ser usado dentro de un PostsProvider');
   }
   return context;
