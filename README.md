@@ -1,17 +1,17 @@
-# ParcialReact
+ParcialReact
 
 Aplicación SPA en React + Vite que consume la API de JSONPlaceholder para gestionar posts (listar, ver detalle, crear, editar, eliminar).
 
-## Integrantes
+Integrantes
 - [Sol Mercado]
-- [Nombre 2]
-- [Nombre 3]
+- [Facundo Delera Hernández]
+- [Celeste López]
 - [Constanza Ferreyra]
 
-## Demo
-🔗 https://rosaschinas.github.io/ParcialReact/
+Demo
+https://rosaschinas.github.io/ParcialReact/
 
-## Instalación y ejecución local
+Instalación y ejecución local
 
 1. Clonar el repositorio:
 git clone https://github.com/rosaschinas/ParcialReact.git
@@ -27,10 +27,10 @@ npm run dev
 
 5. Abrir el link que muestra la terminal (por defecto `http://localhost:5173`).
 
-## Requisitos
+Requisitos
 - Node.js 20.19+ o 22.12+
 
-## Tecnologías
+Tecnologías
 - React + Vite
 - React Router (HashRouter)
 - Context API (tema claro/oscuro y gestión de posts)
